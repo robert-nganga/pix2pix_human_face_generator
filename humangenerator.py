@@ -4,11 +4,11 @@ import base64
 import io
 from keras.preprocessing.image import img_to_array, save_img
 import numpy as np
-import time
 import tensorflow as tf
 from PIL import Image
 from flask_restful import Resource, Api, reqparse
 from flask import Flask
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -59,4 +59,4 @@ class Predict(Resource):
 api.add_resource(Predict, '/predict')
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=8080)
