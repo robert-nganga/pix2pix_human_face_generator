@@ -9,10 +9,10 @@ from PIL import Image
 from flask_restful import Resource, Api, reqparse
 from flask import Flask
 
-app = Flask(__name__)
-api = Api(app)
+application = Flask(__name__)
+api = Api(application)
 
-model = load_model('fully_trained.h5')
+model = load_model('test.h5')
 print('model loaded')
 
 def prepare_image(image, target):
@@ -24,6 +24,7 @@ def prepare_image(image, target):
     
     image = (image - 127.5) / 127.5
     image = np.expand_dims(image, axis=0)
+    return image
     
     
 
@@ -59,4 +60,4 @@ class Predict(Resource):
 api.add_resource(Predict, '/predict')
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0", port=8080)
+    application.run(debug=True, host="0.0.0.0", port=8080)
